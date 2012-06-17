@@ -73,7 +73,7 @@ Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
   -> Opens app/views/todolist_view.coffee
   ```
 
-* The navigation commands can also be called as `:BVmodel` or `:BSview` and will then open the file in a vertical or horizontal split window.
+* **Split windows:** The navigation commands can also be called as `:BVmodel` or `:BSview` which will then open the file in a vertical or horizontal split window.
 
   ```
   :BStemplate user
@@ -86,7 +86,7 @@ Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 ##Configuration
 
 For now the plugin does not detect which brunch skeleton you are using, so by default it expects the standard directory structure and CoffeeScript, Handlebars, Stylus.
-If you want to chage those settings, the following global variables are defined:
+If you want to change those settings, the following global variables are defined:
 
 ###g:brunch_path_app
 default: 'app'
