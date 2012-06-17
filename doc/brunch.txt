@@ -59,23 +59,23 @@ Handlebars, Stylus. If you want to change those settings, the following global
 variables are defined:
 
 >
-    let g:brunch_path_app='app'
+        let g:brunch_path_app='app'
 The directory of the app folder.
 
 >
-    g:brunch_path_test='test'
+         g:brunch_path_test='test'
 The directory of the test folder.
 
 >
-    g:brunch_ext_script='coffee'
+         g:brunch_ext_script='coffee'
 The extension for script files.
 
 >
-    g:brunch_ext_stylesheet='styl'
+        g:brunch_ext_stylesheet='styl'
 The extension for stylesheets.
 
 >
-    g:brunch_ext_template='hbs'
+        g:brunch_ext_template='hbs'
 The extension for templates.
 
 
