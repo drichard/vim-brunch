@@ -108,8 +108,8 @@ The extension for stylesheets.
 The extension for templates.
 
 ###Example:
-```vimL
 Inside your .vimrc:
+```vimL
 " Use Javascript and less for brunch.
 let g:brunch_ext_script = 'js'
 let g:brunch_ext_stylesheet = 'less'
