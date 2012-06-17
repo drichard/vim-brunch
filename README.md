@@ -2,7 +2,7 @@
 
 Inspired by [vim-rails](https://github.com/tpope/vim-rails) this plugin makes navigating through your brunch projects a lot more comfortable. Besides an interface to the brunch command line it offers Ex commands to quickly move from one brunch file to one of its related files. 
 
-Editing your model and want to have the corresponding unit test in a vertical split? Just go `:BVtest`.
+Want to open your user model? Type `:Bmodel user`. Need the corresponding unit test in a vertical split? Just go `:BVtest`.
 
 ##Installation
 
