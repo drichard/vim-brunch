@@ -12,7 +12,7 @@ endfunction
 
 " Set defaults
 call s:SetOptDefault("brunch_path_app", 'app')
-call s:SetOptDefault("brunch_path_test", 'test/tests')
+call s:SetOptDefault("brunch_path_test", 'test')
 call s:SetOptDefault("brunch_ext_script", 'coffee')
 call s:SetOptDefault("brunch_ext_stylesheet", 'styl')
 call s:SetOptDefault("brunch_ext_template", 'hbs')

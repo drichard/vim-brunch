@@ -3,9 +3,9 @@ function! s:sub(str,pat,rep)
   return substitute(a:str,'\v\C'.a:pat,a:rep,'')
 endfunction
 
-" Returns the model's name extracted from the path
+" Returns the modules's name extracted from the path
 function! s:GetName(path)
-  let path = matchlist(a:path, '\v([\a-z_]{-})(_view)?(_test)?\.')
+  let path = matchlist(a:path, '\v([\a-z_]{-})(_controller)?(_view)?(_test)?\.')
   if empty(path)
     return a:path
   else
@@ -13,7 +13,7 @@ function! s:GetName(path)
   endif
 endfunction
 
-" Returns the path for a type with the model name.
+" Returns the path for a type with the module name.
 function! s:PathForType(type, name, path)
   let type = a:type
   let name = a:name
@@ -22,6 +22,8 @@ function! s:PathForType(type, name, path)
     return g:brunch_path_app . '/models/' .name. '.' .g:brunch_ext_script
   elseif type ==# 'view'
     return g:brunch_path_app . '/views/' .name. '_view.' .g:brunch_ext_script
+  elseif type ==# 'controller'
+    return g:brunch_path_app . '/controllers/' .name. '_controller.' .g:brunch_ext_script
   elseif type ==# 'template'
     return g:brunch_path_app . '/views/templates/' .name. '.' .g:brunch_ext_template
   elseif type ==# 'style'
@@ -36,7 +38,7 @@ endfunction
 
 
 " Opens a file of the specific type (model, view, ...).
-" Optional argument: the model name otherwise the name will be resolved
+" Optional argument: the module name otherwise the name will be resolved
 " from the current buffer.
 function! s:FindBrunchFile(type, ...)
   " name/path given?
@@ -74,7 +76,7 @@ endfunction
 function! s:BufCommands()
   " Add three open commands for each type: normal, horizontal split, vertical
   " split
-  for type in ['model', 'view', 'template', 'style', 'test']
+  for type in ['model', 'view', 'controller', 'template', 'style', 'test']
     execute "command! -nargs=? B" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>))"
     execute "command! -nargs=? BV" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>), 'v')"
     execute "command! -nargs=? BS" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>), 's')"

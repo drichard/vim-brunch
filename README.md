@@ -16,6 +16,9 @@ Edits the model for the current module or opens the model with the optionally gi
 ###:Bview [name]
 Edits the view for the current module.
 
+###:Bcontroller [name]
+Edits the controller for the current module.
+
 ###:Btemplate [name]
 Edits the template for the current module.
 
@@ -23,7 +26,7 @@ Edits the template for the current module.
 Edits the stylesheet for the current module.
 
 ###:Btest
-Edits the test for the current file. Inside a model this will open the unit test for a model, inside a view it opens the view test etc. Inside a template for example this command doesn't make much sense.
+Edits the test for the current file. Inside a model this will open the unit test for a model, inside a view it opens the view\_test etc. Inside a template, for example, this command doesn't make much sense.
 
 ###:Bconfig
 Opens the config file for the project.
@@ -50,6 +53,8 @@ Opens index.html
   :BStemplate user
   -> Opens app/views/templates/user.styl in horizontal split window.
   ```
+
+* The plugin makes a lot of assumptions about how you name your files and where you put them. If you don't follow the brunch conventions all hell will break lose and nothing will work.
 
 
 ##Configuration
