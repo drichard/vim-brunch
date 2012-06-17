@@ -92,29 +92,19 @@ Runs all tests for the current project. Same as `brunch test`. Requires brunch 1
 For now the plugin does not detect which brunch skeleton you are using, so by default it expects the standard directory structure and CoffeeScript, Handlebars, Stylus.
 If you want to change those settings, the following global variables are defined:
 
-###g:brunch_path_app
-default: 'app'
-
+###let g:brunch_path_app='app'
 The directory of the app folder.
 
-###g:brunch_path_test
-default: 'test'
-
+###let g:brunch_path_test='test'
 The directory of the test folder.
 
-###g:brunch_ext_script
-default: 'coffee'
-
+###let g:brunch_ext_script='coffee'
 The extension for script files.
 
-###g:brunch_ext_stylesheet
-default: 'styl'
-
+###let g:brunch_ext_stylesheet='styl'
 The extension for stylesheets.
 
-###g:brunch_ext_template 
-default: 'hbs'
-
+###let g:brunch_ext_template='hbs'
 The extension for templates.
 
 ###Example:
