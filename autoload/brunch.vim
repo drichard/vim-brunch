@@ -70,25 +70,31 @@ function! s:Edit(path, ...)
     return 1
   else 
     echo "File not found: " . a:path
+    return 0
   endif
+endfunction
+
+function! s:VEdit(path) 
+  return s:Edit(a:path, 'v') 
+endfunction
+
+function! s:SEdit(path) 
+  return s:Edit(a:path, 's') 
 endfunction
 
 " Adds commands for file navigation in brunch.
 function! s:NavCommands()
   " Add three open commands for each type: normal, horizontal split, vertical
   " split
-  for type in ['model', 'view', 'controller', 'template', 'style', 'test']
-    execute "command! -nargs=? B" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>))"
-    execute "command! -nargs=? BV" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>), 'v')"
-    execute "command! -nargs=? BS" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>), 's')"
-  endfor
+  for mode in ['', 'V', 'S']
+    for type in ['model', 'view', 'controller', 'template', 'style', 'test']
+      execute "command! -nargs=? B" .mode.type. " :call s:" .mode. "Edit(s:FindBrunchFile('" .type. "', <f-args>))"
+    endfor
 
-  command! -nargs=0 Bconfig    :call s:Edit('config.' . g:brunch_ext_script)
-  command! -nargs=0 BVconfig   :call s:Edit('config.' . g:brunch_ext_script, 'v')
-  command! -nargs=0 BSconfig   :call s:Edit('config.' . g:brunch_ext_script, 's')
-  command! -nargs=0 Bindex     :call s:Edit(g:brunch_path_app . '/assets/index.html')
-  command! -nargs=0 BVindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 'v')
-  command! -nargs=0 BSindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 's')
+    " config, index action
+    execute "command! -nargs=0 B" .mode. "config :call s:" .mode. "Edit('config.' . g:brunch_ext_script)"
+    execute "command! -nargs=0 B" .mode. "index  :call s:" .mode. "Edit(g:brunch_path_app . '/assets/index.html')"
+  endfor
 endfunction
 
 
