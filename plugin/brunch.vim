@@ -3,6 +3,7 @@ if exists('g:loaded_brunch') || &cp || v:version < 700
 endif
 let g:loaded_brunch = 1
 
+" Sets a global option if not already defined. Taken from vim-rails by tpope.
 function! s:SetOptDefault(opt,val)
   if !exists("g:".a:opt)
     let g:{a:opt} = a:val
