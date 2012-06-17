@@ -25,7 +25,7 @@ Editing your model and want to have the corresponding unit test in a vertical sp
 
 ##Usage
 
-vim-brunch expects that you start VIM inside the root folder of your brunch project. When a brunch project has been detected the following commands are available:
+Vim-brunch expects that you start Vim inside the root folder of your brunch project. When a brunch project has been detected the following commands are available:
 
 ###:Bmodel [name]
 Edits the model for the current module or opens the model with the optionally given name.
