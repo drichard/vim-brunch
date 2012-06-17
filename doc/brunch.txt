@@ -1,10 +1,10 @@
 *brunch.txt*    Plugin for working with brunch projects.
 
-Author: David Richard <https://github.com/drichard> 
-License: Same as Vim itself.
-Github: https://githubs/drichard/vim-brunch
+Author:     David Richard (https://github.com/drichard)
+License:    Same as Vim itself.
+Github:     https://githubs/drichard/vim-brunch
 
-INTRODUCTION      *brunch*
+INTRODUCTION                                *brunch*
 
 Inspired by vim-rails this plugin makes navigating through your brunch projects
 a lot more comfortable. Besides an interface to the brunch command line it
@@ -14,7 +14,7 @@ files.
 Editing your model and want to have the corresponding unit test in a vertical
 split? Just go :BVtest.
 
-COMMANDS          *brunch-commands*
+COMMANDS                                    *brunch-commands*
 
 Vim-brunch expects that you start Vim inside the root folder of your brunch
 project. When a brunch project has been detected the following commands are
@@ -51,24 +51,32 @@ available:
 :Btests [options]   Runs all tests for the current project. Same as brunch test.
                     Requires brunch 1.3+.
 
-CONFIGURATION     *brunch-configuration*
+CONFIGURATION                                   *brunch-configuration*
 
 For now the plugin does not detect which brunch skeleton you are using, so by
 default it expects the standard directory structure and CoffeeScript,
 Handlebars, Stylus. If you want to change those settings, the following global
 variables are defined:
 
+>
     let g:brunch_path_app='app'
 The directory of the app folder.
 
+>
     g:brunch_path_test='test'
 The directory of the test folder.
 
+>
     g:brunch_ext_script='coffee'
 The extension for script files.
 
+>
     g:brunch_ext_stylesheet='styl'
 The extension for stylesheets.
 
+>
     g:brunch_ext_template='hbs'
 The extension for templates.
+
+
+vim:tw=78:ts=4:ft=help:norl:
