@@ -1,4 +1,4 @@
-" substitute function
+" better substitute function
 function! s:sub(str,pat,rep)
   return substitute(a:str,'\v\C'.a:pat,a:rep,'')
 endfunction
@@ -94,9 +94,10 @@ endfunction
 
 " Adds command interface to common brunch commands.
 function! s:BrunchCommands()
-  command! -nargs=*   Build    :echo system("brunch build " . <q-args>)
+  command! -nargs=*   Build     :echo system("brunch build " . <q-args>)
   command! -nargs=*   Bgenerate :echo system("brunch generate " . <q-args>)
   command! -nargs=*   Bdestroy  :echo system("brunch destroy " . <q-args>)
+  command! -nargs=*   Btests    :echo system("brunch test " . <q-args>)
 endfunction
 
 call s:NavCommands()

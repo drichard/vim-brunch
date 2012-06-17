@@ -60,6 +60,9 @@ Generate files from template. Same as `brunch generate`.
 ###:Bdestroy \<type\> \<name\> [options]
 Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 
+###:Btests [options]
+Runs all tests for the current project.
+
 ###Hints
 * When called without an argument the commands with an optional [name] argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
   
