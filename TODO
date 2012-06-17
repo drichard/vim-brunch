@@ -8,8 +8,6 @@ open files
 :Bconfig
 :Bindex opens index html
 
-:BCview XXX  open 4 split windows with view, style, template, test
-
 each with :BSxxx, :BV
 
 commands
