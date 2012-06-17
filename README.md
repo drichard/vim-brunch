@@ -49,6 +49,15 @@ Opens the config file for the project.
 ###:Bindex
 Opens index.html
 
+###:Build [options]
+Builds the project. Same as `brunch build`.
+
+###:Bgenerate \<type\> \<name\> [options]
+Generate files from template. Same as `brunch generate`.
+
+###:Bdestroy \<type\> \<name\> [options]
+Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
+
 ###Hints
 * When called without an argument the commands with an optional [name] argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
   
@@ -112,5 +121,6 @@ let g:brunch_ext_stylesheet = 'less'
 
 ##TODO
 
+* Add support for `brunch watch` and `brunch watch -s`
 * Detect brunch settings based config.coffee
 * Add suport `gf` in `require './home_view'` statements

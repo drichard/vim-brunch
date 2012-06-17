@@ -73,7 +73,8 @@ function! s:Edit(path, ...)
   endif
 endfunction
 
-function! s:BufCommands()
+" Adds commands for file navigation in brunch.
+function! s:NavCommands()
   " Add three open commands for each type: normal, horizontal split, vertical
   " split
   for type in ['model', 'view', 'controller', 'template', 'style', 'test']
@@ -82,12 +83,21 @@ function! s:BufCommands()
     execute "command! -nargs=? BS" .type. " :call s:Edit(s:FindBrunchFile('" .type. "', <f-args>), 's')"
   endfor
 
-  command! -buffer  -nargs=0 Bconfig    :call s:Edit('config.' . g:brunch_ext_script)
-  command! -buffer  -nargs=0 BVconfig   :call s:Edit('config.' . g:brunch_ext_script, 'v')
-  command! -buffer  -nargs=0 BSconfig   :call s:Edit('config.' . g:brunch_ext_script, 's')
-  command! -buffer  -nargs=0 Bindex     :call s:Edit(g:brunch_path_app . '/assets/index.html')
-  command! -buffer  -nargs=0 BVindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 'v')
-  command! -buffer  -nargs=0 BSindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 's')
+  command! -nargs=0 Bconfig    :call s:Edit('config.' . g:brunch_ext_script)
+  command! -nargs=0 BVconfig   :call s:Edit('config.' . g:brunch_ext_script, 'v')
+  command! -nargs=0 BSconfig   :call s:Edit('config.' . g:brunch_ext_script, 's')
+  command! -nargs=0 Bindex     :call s:Edit(g:brunch_path_app . '/assets/index.html')
+  command! -nargs=0 BVindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 'v')
+  command! -nargs=0 BSindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 's')
 endfunction
 
-call s:BufCommands()
+
+" Adds command interface to common brunch commands.
+function! s:BrunchCommands()
+  command! -nargs=*   Build    :echo system("brunch build " . <q-args>)
+  command! -nargs=*   Bgenerate :echo system("brunch generate " . <q-args>)
+  command! -nargs=*   Bdestroy  :echo system("brunch destroy " . <q-args>)
+endfunction
+
+call s:NavCommands()
+call s:BrunchCommands()
