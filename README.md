@@ -50,7 +50,7 @@ Opens the test for the current file. Inside a model this will open the unit test
 Opens the config file for the project.
 
 ###:Bindex
-Opens index.html
+Opens index.html in app/assets/index.html.
 
 ###:Build [options]
 Builds the project. Same as `brunch build`.
@@ -62,7 +62,7 @@ Generate files from template. Same as `brunch generate`.
 Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 
 ###:Btests [options]
-Runs all tests for the current project.
+Runs all tests for the current project. Same as `brunch test`. Requires brunch 1.3+.
 
 ###Hints
 * When called without an argument the commands with an optional [name] argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
