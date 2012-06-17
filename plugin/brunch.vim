@@ -1,3 +1,8 @@
+if exists('g:loaded_brunch') || &cp || v:version < 700
+  finish
+endif
+let g:loaded_brunch = 1
+
 function! s:SetOptDefault(opt,val)
   if !exists("g:".a:opt)
     let g:{a:opt} = a:val
