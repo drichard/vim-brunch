@@ -81,7 +81,11 @@ function! s:BufCommands()
   endfor
 
   command! -buffer  -nargs=0 Bconfig    :call s:Edit('config.' . g:brunch_ext_script)
+  command! -buffer  -nargs=0 BVconfig   :call s:Edit('config.' . g:brunch_ext_script, 'v')
+  command! -buffer  -nargs=0 BSconfig   :call s:Edit('config.' . g:brunch_ext_script, 's')
   command! -buffer  -nargs=0 Bindex     :call s:Edit(g:brunch_path_app . '/assets/index.html')
+  command! -buffer  -nargs=0 BVindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 'v')
+  command! -buffer  -nargs=0 BSindex    :call s:Edit(g:brunch_path_app . '/assets/index.html', 's')
 endfunction
 
 call s:BufCommands()
