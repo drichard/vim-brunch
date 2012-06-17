@@ -6,24 +6,26 @@ Editing your model and want to have the corresponding unit test in a vertical sp
 
 ##Installation
 
-1. Preferred method: Vundle
-  * Install [vundle](https://github.com/gmarik/vundle)
-  * Add `Bundle 'drichard/vim-brunch'` to your vimrc
+###Preferred method: Vundle
+* Install [vundle](https://github.com/gmarik/vundle)
+* Add `Bundle 'drichard/vim-brunch'` to your vimrc
 
-2. Manual installation
-  * Download zip/tarball and extract contents into your .vim directory
-  OR
-  * Use git:
+### Manual installation
+* Download zip/tarball and extract contents into your .vim directory
 
-  ```
-  git clone git://github.com/drichard/vim-brunch.git
-  cd vim-brunch
-  cp -R * ~/.vim
-  ```
+  **OR**
+
+* Use git:
+
+ ```
+ git clone git://github.com/drichard/vim-brunch.git
+ cd vim-brunch
+ cp -R * ~/.vim
+ ```
 
 ##Usage
 
-vim-brunch expects that you start VIM inside the root folder of your brunch project. When a brunch project has been detected the following commands are available:
+Vim-brunch expects that you start Vim inside the root folder of your brunch project. When a brunch project has been detected the following commands are available:
 
 ###:Bmodel [name]
 Edits the model for the current module or opens the model with the optionally given name.
