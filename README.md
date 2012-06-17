@@ -7,8 +7,9 @@ Editing your model and want to have the corresponding unit test in a vertical sp
 ##Installation
 
 ###Preferred method: Vundle
-* Install [vundle](https://github.com/gmarik/vundle)
+* Install with [vundle](https://github.com/gmarik/vundle)
 * Add `Bundle 'drichard/vim-brunch'` to your vimrc
+* Save and call `:BundleInstall`
 
 ### Manual installation
 * Download zip/tarball and extract contents into your .vim directory
@@ -28,22 +29,22 @@ Editing your model and want to have the corresponding unit test in a vertical sp
 Vim-brunch expects that you start Vim inside the root folder of your brunch project. When a brunch project has been detected the following commands are available:
 
 ###:Bmodel [name]
-Edits the model for the current module or opens the model with the optionally given name.
+Opens the model for the current module or opens the model with the optionally given name.
 
 ###:Bview [name]
-Edits the view for the current module.
+Opens the view for the current module.
 
 ###:Bcontroller [name]
-Edits the controller for the current module.
+Opens the controller for the current module.
 
 ###:Btemplate [name]
-Edits the template for the current module.
+Opens the template for the current module.
 
 ###:Bstyle [name]
-Edits the stylesheet for the current module.
+Opens the stylesheet for the current module.
 
 ###:Btest
-Edits the test for the current file. Inside a model this will open the unit test for a model, inside a view it opens the view\_test etc. Inside a template, for example, this command doesn't make much sense.
+Opens the test for the current file. Inside a model this will open the unit test for a model, inside a view it opens the view\_test etc. Inside a template, for example, this command doesn't make much sense.
 
 ###:Bconfig
 Opens the config file for the project.
