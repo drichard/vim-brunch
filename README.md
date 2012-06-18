@@ -126,7 +126,6 @@ let g:brunch_ext_stylesheet = 'less'
 
 ##TODO
 
-* Add support for `brunch watch` and `brunch watch -s`
-* Detect brunch settings based config.coffee
 * Add support for `gf` in `require './home\_view'` statements
 * Add optional name argument to :Btest
+* Detect brunch settings based config.coffee
