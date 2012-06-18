@@ -37,7 +37,7 @@ function! s:PathForType(type, name, path)
 endfunction
 
 
-" Opens a file of the specific type (model, view, ...).
+" Finds the path of a file of the specific type (model, view, ...).
 " Optional argument: the module name otherwise the name will be resolved
 " from the current buffer.
 function! s:FindBrunchFile(type, ...)
@@ -53,33 +53,25 @@ function! s:FindBrunchFile(type, ...)
 endfunction
 
 " Opens a file for editing in the current buffer.
-" Optional argument can be a string. 'v' for vsplit, 's' for split.
-function! s:Edit(path, ...)
-  if filereadable(a:path)
-    if a:0 == 0
-      let openMethod = 'edit'
-    else
-      let mode = a:1
-      if mode ==? 'v'
-        let openMethod = 'vsplit'
-      elseif mode ==# 's'
-        let openMethod = 'split'
-      endif
+"
+" bang  - true if file does not have to exist yet
+" path  - the path to the file
+" mode  - 'v', 's' or '' for vsplit, split or normal edit
+function! s:Edit(bang, path, mode)
+  if a:bang || filereadable(a:path)
+    if a:mode ==? ''
+      let openMethod = 'edit '
+    elseif a:mode ==? 'v'
+      let openMethod = 'vsplit '
+    elseif a:mode ==? 's'
+      let openMethod = 'split '
     endif
-    execute openMethod . ' ' . a:path
+    execute openMethod . a:path
     return 1
   else 
     echo "File not found: " . a:path
     return 0
   endif
-endfunction
-
-function! s:VEdit(path) 
-  return s:Edit(a:path, 'v') 
-endfunction
-
-function! s:SEdit(path) 
-  return s:Edit(a:path, 's') 
 endfunction
 
 " Adds commands for file navigation in brunch.
@@ -88,12 +80,12 @@ function! s:NavCommands()
   " split
   for mode in ['', 'V', 'S']
     for type in ['model', 'view', 'controller', 'template', 'style', 'test']
-      execute "command! -nargs=? B" .mode.type. " :call s:" .mode. "Edit(s:FindBrunchFile('" .type. "', <f-args>))"
+      execute "command! -bang -nargs=? B" .mode.type. " :call s:Edit(<bang>0, s:FindBrunchFile('" .type. "', <f-args>), '" .mode. "')"
     endfor
 
     " config, index action
-    execute "command! -nargs=0 B" .mode. "config :call s:" .mode. "Edit('config.' . g:brunch_ext_script)"
-    execute "command! -nargs=0 B" .mode. "index  :call s:" .mode. "Edit(g:brunch_path_app . '/assets/index.html')"
+    execute "command! -nargs=0 B" .mode. "config :call s:Edit(0, 'config.' . g:brunch_ext_script, '" .mode. "')"
+    execute "command! -nargs=0 B" .mode. "index  :call s:Edit(0, g:brunch_path_app . '/assets/index.html', '" .mode. "')"
   endfor
 endfunction
 

@@ -65,6 +65,15 @@ Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 Runs all tests for the current project. Same as `brunch test`. Requires brunch 1.3+.
 
 ###Hints
+* The commands [model, view, controller, template, style, test] accept a *bang* modifier which creates a new file if it does not exist yet.
+
+  ```
+  :Bcontroller! home
+  -> Would create app/controllers/home_controller.coffee if it isn't there yet.
+  :Btest!
+  -> Create the corresponding test file
+  ```
+
 * When called without an argument the commands with an optional [name] argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
   
   ```
