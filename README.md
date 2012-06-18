@@ -130,4 +130,3 @@ let g:brunch_ext_stylesheet = 'less'
 * Detect brunch settings based config.coffee
 * Add support for `gf` in `require './home\_view'` statements
 * Add optional name argument to :Btest
-* Add `:Bmodel! user` command that creates a user model file if it doesn't exist yet.
