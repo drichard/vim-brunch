@@ -1,6 +1,6 @@
 " Plugin:   vim-brunch
 " Author:   David Richard (https://github.com/drichard)
-" Version:  0.3.0
+" Version:  0.4.0
 
 if exists('g:loaded_brunch') || &cp || v:version < 700
   finish

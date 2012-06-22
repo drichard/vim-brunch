@@ -125,12 +125,14 @@ function! s:NavCommands()
   " split
   for mode in ['', 'V', 'S']
     " all types
-    for type in ['model', 'view', 'controller', 'template', 'style']
-      execute "command! -bang -nargs=? B" .mode.type. " :call s:Edit(<bang>0, s:FindBrunchType('" .type. "', <f-args>), '" .mode. "')"
-    endfor
-
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteModels      B" .mode. "model      :call s:Edit(<bang>0, s:FindBrunchType('model', <f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteViews       B" .mode. "view       :call s:Edit(<bang>0, s:FindBrunchType('view', <f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteControllers B" .mode. "controller :call s:Edit(<bang>0, s:FindBrunchType('controller', <f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteTemplates   B" .mode. "template   :call s:Edit(<bang>0, s:FindBrunchType('template', <f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteStyles      B" .mode. "style      :call s:Edit(<bang>0, s:FindBrunchType('style', <f-args>), '" .mode. "')"
+    "
     " test
-    execute "command! -bang -nargs=? B" .mode. "test :call s:Edit(<bang>0, s:FindBrunchTest(<f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? -complete=custom,s:CompleteScripts     B" .mode. "test :call s:Edit(<bang>0, s:FindBrunchTest(<f-args>), '" .mode. "')"
 
     " config, index
     execute "command! -nargs=0 B" .mode. "config :call s:Edit(0, 'config' . s:ext_script, '" .mode. "')"
@@ -145,6 +147,50 @@ function! s:BrunchCommands()
   command! -nargs=*   Bgenerate :echo system("brunch generate " . <q-args>)
   command! -nargs=*   Bdestroy  :echo system("brunch destroy "  . <q-args>)
   command! -nargs=*   Btests    :echo system("brunch test "     . <q-args>)
+endfunction
+
+
+" AutoCompletion
+function! s:CompleteScripts(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app, s:ext_script)
+endfunction
+
+function! s:CompleteModels(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app . '/models', s:ext_script)
+endfunction
+
+function! s:CompleteViews(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app . '/views', s:ext_script, '_view')
+endfunction
+
+function! s:CompleteControllers(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app . '/controllers', s:ext_script, '_controller')
+endfunction
+
+function! s:CompleteStyles(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app . '/views/styles', s:ext_style)
+endfunction
+
+function! s:CompleteTemplates(A, L, P)
+  return s:CompleteFiles(g:brunch_path_app . '/views/templates', s:ext_template)
+endfunction
+
+" Filters files recursively based on path, extension and optional substitution.
+"
+" path      - the base path to start searching
+" ext       - the filename extension
+" optional  - a regex for a part of the filename that should be removed
+"
+" Returns a String of filenames for custom autocompletion.
+function! s:CompleteFiles(path, ext, ...)
+  let paths = split(globpath(a:path, '**/*' . a:ext), '\n')
+  let filenames = map(paths, "fnamemodify(v:val, ':t:r')")
+
+  if a:0 == 1
+    let filenames = map(filenames, "s:sub(v:val, '" . a:1 ."', '')")
+  endif
+
+  return join(filenames, "\n")
 endfunction
 
 " Init commands.

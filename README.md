@@ -68,8 +68,8 @@ Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 ###:Btests [options]
 Runs all tests for the current project. Same as `brunch test`. Requires brunch 1.3+.
 
-###Hints
-* The commands [model, view, controller, template, style, test] accept a *bang* modifier which creates a new file if it does not exist yet.
+###Features and Hints
+* **Bang modifier:** The commands [model, view, controller, template, style, test] accept a *bang* modifier which creates a new file if it does not exist yet.
 
   ```
   :Bcontroller! home
@@ -78,17 +78,21 @@ Runs all tests for the current project. Same as `brunch test`. Requires brunch 1
   -> Create the corresponding test file
   ```
 
-* When called without an argument the commands with an optional [name] argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
+* When called without an argument the commands with an optional *[name]* argument will open the appropriate file based on the file in the current buffer. However, you can specify a module name if you like to open an unrelated module.
   
-  ```
   Inside app/models/todo.coffee:
+  ```
   :Bview
   -> Opens app/views/todo_view.coffee
+  ```
   
   Inside app/application.coffee:
+  ```
   :Bview todolist
   -> Opens app/views/todolist_view.coffee
   ```
+
+* **Auto completion:** All commands that accept an optional *[name]* argument offer context based auto completion. For example, `:Bmodel t<TAB>` would auto complete all models starting with 't'.
 
 * **Split windows:** The navigation commands can also be called as `:BVmodel` or `:BSview` which will then open the file in a vertical or horizontal split window.
 
@@ -132,4 +136,3 @@ let g:brunch_ext_stylesheet = 'less'
 
 * Add support for `gf` in `require './home\_view'` statements
 * Detect brunch settings based config.coffee
-* Auto completion for module names
