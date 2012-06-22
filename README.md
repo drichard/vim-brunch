@@ -1,4 +1,4 @@
-#A vim plugin for [brunch](http://brunch.io/)
+#A vim plugin for [brunch](http://brunch.io/) (with Backbone)
 
 Inspired by [vim-rails](https://github.com/tpope/vim-rails) this plugin makes navigating through your brunch projects a lot more comfortable. Besides an interface to the brunch command line it offers Ex commands to quickly move from one brunch file to one of its related files. 
 
@@ -102,7 +102,7 @@ Runs all tests for the current project. Same as `brunch test`. Requires brunch 1
 
 ##Configuration
 
-For now the plugin does not detect which brunch skeleton you are using, so by default it expects the standard directory structure and CoffeeScript, Handlebars, Stylus.
+For now the plugin does not detect which brunch skeleton you are using, so by default it expects the standard directory structure with Backbone.js, CoffeeScript, Handlebars and Stylus.
 If you want to change those settings, the following global variables are defined:
 
 ###let g:brunch_path_app='app'
