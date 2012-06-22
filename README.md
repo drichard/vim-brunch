@@ -68,7 +68,7 @@ Destroys changes made by `:Bgenerate`. Same as `brunch destroy`.
 ###:Btests [options]
 Runs all tests for the current project. Same as `brunch test`. Requires brunch 1.3+.
 
-###Features and Hints
+##Features and Hints
 * **Bang modifier:** The commands [model, view, controller, template, style, test] accept a *bang* modifier which creates a new file if it does not exist yet.
 
   ```
