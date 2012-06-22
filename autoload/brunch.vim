@@ -1,6 +1,11 @@
+" Convenience shortcuts to file extensions
+let s:ext_script    = '.' . g:brunch_ext_script
+let s:ext_template  = '.' . g:brunch_ext_template
+let s:ext_style     = '.' . g:brunch_ext_stylesheet
+
 " better substitute function
 function! s:sub(str,pat,rep)
-  return substitute(a:str,'\v\C'.a:pat,a:rep,'')
+  return substitute(a:str,'\v\C'.a:pat, a:rep,'')
 endfunction
 
 " Returns the modules's name extracted from the path
@@ -23,15 +28,15 @@ function! s:PathForType(type, name)
   let name = a:name
 
   if type ==# 'model'
-    return g:brunch_path_app . '/models/' .name. '.' .g:brunch_ext_script
+    return g:brunch_path_app . '/models/' . name . s:ext_script
   elseif type ==# 'view'
-    return g:brunch_path_app . '/views/' .name. '_view.' .g:brunch_ext_script
+    return g:brunch_path_app . '/views/' . name . '_view' . s:ext_script
   elseif type ==# 'controller'
-    return g:brunch_path_app . '/controllers/' .name. '_controller.' .g:brunch_ext_script
+    return g:brunch_path_app . '/controllers/' . name . '_controller' . s:ext_script
   elseif type ==# 'template'
-    return g:brunch_path_app . '/views/templates/' .name. '.' .g:brunch_ext_template
+    return g:brunch_path_app . '/views/templates/' . name . s:ext_template
   elseif type ==# 'style'
-    return g:brunch_path_app . '/views/styles/' .name. '.' .g:brunch_ext_stylesheet
+    return g:brunch_path_app . '/views/styles/' . name . s:ext_style
   endif
 endfunction
 
@@ -56,14 +61,14 @@ function! s:FindBrunchTest(...)
     let name = a:1
     " controllers are easy to resolve
     if name =~ '_controller'
-      let path = g:brunch_path_test . '/controllers/' . name . '_test.' . g:brunch_ext_script
+      let path = g:brunch_path_test . '/controllers/' . name . '_test' . s:ext_script
     " and so are views
     elseif name =~ '_view'
-      let path = g:brunch_path_test . '/views/' . name . '_test.' . g:brunch_ext_script
+      let path = g:brunch_path_test . '/views/' . name . '_test' . s:ext_script
     else
       " Let's try to find a path to the test elsewhere
       for dir in [ '/models/', '/lib', '/' ]
-        let path = g:brunch_path_test . dir . name . '_test.' . g:brunch_ext_script
+        let path = g:brunch_path_test . dir . name . '_test' . s:ext_script
         if filereadable(path)
           break
         endif
@@ -125,10 +130,10 @@ function! s:NavCommands()
     endfor
 
     " test
-    execute "command! -bang -nargs=? B" .mode."test :call s:Edit(<bang>0, s:FindBrunchTest(<f-args>), '" .mode. "')"
+    execute "command! -bang -nargs=? B" .mode. "test :call s:Edit(<bang>0, s:FindBrunchTest(<f-args>), '" .mode. "')"
 
     " config, index
-    execute "command! -nargs=0 B" .mode. "config :call s:Edit(0, 'config.' . g:brunch_ext_script, '" .mode. "')"
+    execute "command! -nargs=0 B" .mode. "config :call s:Edit(0, 'config' . s:ext_script, '" .mode. "')"
     execute "command! -nargs=0 B" .mode. "index  :call s:Edit(0, g:brunch_path_app . '/assets/index.html', '" .mode. "')"
   endfor
 endfunction

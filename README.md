@@ -43,8 +43,12 @@ Opens the template for the current module.
 ###:Bstyle [name]
 Opens the stylesheet for the current module.
 
-###:Btest
+###:Btest [name]
 Opens the test for the current file. Inside a model this will open the unit test for a model, inside a view it opens the view\_test etc. Inside a template, for example, this command doesn't make much sense.
+
+To open a specific test file *name* should be the filename of the module. The script will then try to figure out which test you want to open. For example, for `:Btest user` it would assume that you would like to open the test for the *user model*, whereas `:Btest user_view` will open the test for the *user view*.
+
+In combination with the bang modifier this commands makes a handy shortcut for creating test files. `:Btest! todo_view` will create an empty test file in `test/views/todo_view_test.coffee`.
 
 ###:Bconfig
 Opens the config file for the project.
@@ -93,7 +97,7 @@ Runs all tests for the current project. Same as `brunch test`. Requires brunch 1
   -> Opens app/views/templates/user.styl in horizontal split window.
   ```
 
-* The plugin makes a lot of assumptions about how you name your files and where you put them. If you don't follow the brunch conventions all hell will break lose and nothing will work.
+* The plugin makes a lot of assumptions about how you name your files and where you put them. If you don't follow the brunch conventions all hell will break lose, the undead will rise again and not much will work really.
 
 
 ##Configuration
@@ -127,5 +131,5 @@ let g:brunch_ext_stylesheet = 'less'
 ##TODO
 
 * Add support for `gf` in `require './home\_view'` statements
-* Add optional name argument to :Btest
 * Detect brunch settings based config.coffee
+* Auto completion for module names
