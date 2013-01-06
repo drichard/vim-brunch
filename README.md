@@ -124,6 +124,9 @@ The extension for stylesheets.
 ###let g:brunch_ext_template='hbs'
 The extension for templates.
 
+###let g:brunch_name_delim='_'
+The delimiter in file names, _ or -.
+
 ###Example:
 Inside your .vimrc:
 ```vimL

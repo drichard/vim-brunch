@@ -78,5 +78,9 @@ The extension for stylesheets.
         g:brunch_ext_template='hbs'
 The extension for templates.
 
+>
+        g:brunch_name_delim='_'
+The delimiter in file names, _ or -.
+
 
 vim:tw=78:ts=4:ft=help:norl:
