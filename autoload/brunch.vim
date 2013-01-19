@@ -3,6 +3,8 @@ let s:ext_script    = '.' . g:brunch_ext_script
 let s:ext_template  = '.' . g:brunch_ext_template
 let s:ext_style     = '.' . g:brunch_ext_stylesheet
 
+let s:name_delim    = g:brunch_name_delim
+
 " better substitute function
 function! s:sub(str,pat,rep)
   return substitute(a:str,'\v\C'.a:pat, a:rep,'')
@@ -11,7 +13,7 @@ endfunction
 " Returns the modules's name extracted from the path
 " E.g. 'app/views/event_view.coffee' becomes 'event'
 function! s:GetName(path)
-  let path = matchlist(a:path, '\v([\a-z_]{-})(_controller)?(_view)?(_test)?\.')
+  let path = matchlist(a:path, '\v([\a-z_\-]{-})([_-]controller)?([_-]view)?([_-]test)?\.')
   if empty(path)
     return a:path
   else
@@ -30,9 +32,9 @@ function! s:PathForType(type, name)
   if type ==# 'model'
     return g:brunch_path_app . '/models/' . name . s:ext_script
   elseif type ==# 'view'
-    return g:brunch_path_app . '/views/' . name . '_view' . s:ext_script
+    return g:brunch_path_app . '/views/' . name . s:name_delim . 'view' . s:ext_script
   elseif type ==# 'controller'
-    return g:brunch_path_app . '/controllers/' . name . '_controller' . s:ext_script
+    return g:brunch_path_app . '/controllers/' . name . s:name_delim . 'controller' . s:ext_script
   elseif type ==# 'template'
     return g:brunch_path_app . '/views/templates/' . name . s:ext_template
   elseif type ==# 'style'
@@ -54,21 +56,21 @@ function! s:FindBrunchTest(...)
     " Replace app/ with test/ and add _test to each file name.
     let path = expand('%')
     let path = s:sub(path, g:brunch_path_app, g:brunch_path_test)
-    let path = s:sub(path, '\.', '_test\.') 
+    let path = s:sub(path, '\.', s:name_delim . 'test\.')
     return path
   else
     " name was given, try to find a corresponding file
     let name = a:1
     " controllers are easy to resolve
-    if name =~ '_controller'
-      let path = g:brunch_path_test . '/controllers/' . name . '_test' . s:ext_script
+    if name =~ s:name_delim . 'controller'
+      let path = g:brunch_path_test . '/controllers/' . name . s:name_delim . 'test' . s:ext_script
     " and so are views
-    elseif name =~ '_view'
-      let path = g:brunch_path_test . '/views/' . name . '_test' . s:ext_script
+    elseif name =~ s:name_delim . 'view'
+      let path = g:brunch_path_test . '/views/' . name . s:name_delim . 'test' . s:ext_script
     else
       " Let's try to find a path to the test elsewhere
       for dir in [ '/models/', '/lib', '/' ]
-        let path = g:brunch_path_test . dir . name . '_test' . s:ext_script
+        let path = g:brunch_path_test . dir . name . s:name_delim . 'test' . s:ext_script
         if filereadable(path)
           break
         endif
@@ -160,11 +162,11 @@ function! s:CompleteModels(A, L, P)
 endfunction
 
 function! s:CompleteViews(A, L, P)
-  return s:CompleteFiles(g:brunch_path_app . '/views', s:ext_script, '_view')
+  return s:CompleteFiles(g:brunch_path_app . '/views', s:ext_script, s:name_delim . 'view')
 endfunction
 
 function! s:CompleteControllers(A, L, P)
-  return s:CompleteFiles(g:brunch_path_app . '/controllers', s:ext_script, '_controller')
+  return s:CompleteFiles(g:brunch_path_app . '/controllers', s:ext_script, s:name_delim . 'controller')
 endfunction
 
 function! s:CompleteStyles(A, L, P)

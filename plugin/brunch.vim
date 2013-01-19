@@ -20,6 +20,7 @@ call s:SetOptDefault("brunch_path_test", 'test')
 call s:SetOptDefault("brunch_ext_script", 'coffee')
 call s:SetOptDefault("brunch_ext_stylesheet", 'styl')
 call s:SetOptDefault("brunch_ext_template", 'hbs')
+call s:SetOptDefault("brunch_name_delim", '_')
 
 
 " Detect if we are inside a brunch project. A brunch project should have an
